@@ -40,7 +40,9 @@ adb shell content query --uri content://settings/global > "$OUTPUTDIR/$NAME/glob
 # See https://nelenkov.blogspot.de/2012/06/unpacking-android-backups.html for more info
 dd if="$OUTPUTDIR/$NAME/$DATE.ab" bs=24 skip=1 | zlib-flate -uncompress > "$OUTPUTDIR/$NAME/$DATE.tar"
 
+mkdir "$OUTPUTDIR/$NAME/$DATE"
+
 # Untar data
-tar --force-local -xf "$OUTPUTDIR/$NAME/$DATE.ab" -C "$OUTPUTDIR/$NAME"
+tar --force-local -xf "$OUTPUTDIR/$NAME/$DATE.tar" -C "$OUTPUTDIR/$NAME/$DATE"
 
 
